@@ -1,10 +1,10 @@
 import Button from "./Button.js"
 
 const Search = ({ value, onSubmit, onChange, children }) => (
-  <form>
+  <form onSubmit={onSubmit}>
     {children}
     <input type="text" value={value} onChange={onChange} />
-    <Button onClick={onSubmit}>{children}</Button>
+    <Button type="submit">{children}</Button>
   </form>
 )
 
