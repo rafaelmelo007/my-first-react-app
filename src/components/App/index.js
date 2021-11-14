@@ -5,7 +5,15 @@ import Search from "../Search"
 import Table from "../Table"
 import Button from "../Button"
 
-import { DEFAULT_QUERY, DEFAULT_HPP, PATH_BASE, PATH_SEARCH, PARAM_SEARCH, PARAM_PAGE, PARAM_HPP } from '../../constants'
+import {
+  DEFAULT_QUERY,
+  DEFAULT_HPP,
+  PATH_BASE,
+  PATH_SEARCH,
+  PARAM_SEARCH,
+  PARAM_PAGE,
+  PARAM_HPP,
+} from "../../constants"
 
 class App extends Component {
   _isMounted = false
