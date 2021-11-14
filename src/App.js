@@ -18,15 +18,15 @@ class App extends Component {
     super(props)
 
     this.state = {
-      result: {
-        hints: [],
-      },
+      results: null,
+      searchKey: "",
       searchTerm: DEFAULT_QUERY,
     }
   }
 
   componentDidMount = () => {
     const { searchTerm } = this.state
+    this.setState({ searchKey: searchTerm })
     this.fetchSearchTopStories(searchTerm)
   }
 
@@ -36,23 +36,32 @@ class App extends Component {
 
   onSearchSubmit = () => {
     const { searchTerm } = this.state
+    this.setState({ searchKey: searchTerm })
     this.fetchSearchTopStories(searchTerm)
   }
 
   onDismiss = (id) => {
+    const { searchKey, results } = this.state
+    const { hits, page } = results[searchKey]
     const isNotId = (item) => item.objectID !== id
-    const updatedHits = this.state.result.hits.filter(isNotId)
+    const updatedHits = hits.filter(isNotId)
+
     this.setState({
-      result: { ...this.state.result, hits: updatedHits },
+      results: {
+        ...this.state.results,
+        [searchKey]: { hits: updatedHits, page },
+      },
     })
   }
 
   render() {
-    const { searchTerm, result } = this.state
-    const page = (result && result.page) || 0
-    if (!result) {
-      return null
-    }
+    const { searchTerm, searchKey, results } = this.state
+
+    const page = (results && results[searchKey] && results[searchKey].page) || 0
+
+    const list =
+      (results && results[searchKey] && results[searchKey].hits) || []
+
     return (
       <div className="page">
         <div className="interactions">
@@ -63,13 +72,11 @@ class App extends Component {
           >
             Search
           </Search>
-          {result?.hits && (
-            <Table list={result.hits} onDismiss={this.onDismiss} />
-          )}
+          {list && <Table list={list} onDismiss={this.onDismiss} />}
         </div>
         <div className="interactions">
           <Button
-            onClick={() => this.fetchSearchTopStories(searchTerm, page + 1)}
+            onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}
           >
             More
           </Button>
@@ -80,14 +87,24 @@ class App extends Component {
 
   setSearchTopStories = (result) => {
     const { hits, page } = result
-    const oldHits = page !== 0 ? this.state.result.hits : []
+    const { searchKey, results } = this.state
+
+    const oldHits = results && results[searchKey] ? results[searchKey].hits : []
+
     const updatedHits = [...oldHits, ...hits]
     this.setState({
-      result: { hits: updatedHits, page },
+      results: {
+        ...results,
+        [searchKey]: { hits: updatedHits, page },
+      },
     })
   }
 
   fetchSearchTopStories = (searchTerm, page = 0) => {
+    const { searchKey, results } = this.state
+    if (results && results[searchTerm] && page === 0) {
+      return
+    }
     fetch(
       `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`
     )
