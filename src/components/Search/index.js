@@ -1,4 +1,4 @@
-import Button from "./Button.js"
+import Button from "../Button"
 
 const Search = ({ value, onSubmit, onChange, children }) => (
   <form onSubmit={onSubmit}>

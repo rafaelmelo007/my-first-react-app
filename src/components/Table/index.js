@@ -1,5 +1,5 @@
 import { Component } from "react"
-import Button from "./Button.js"
+import Button from "../Button"
 
 const largeColumn = {
   width: "40%",
