@@ -1,3 +1,4 @@
+import axios from "axios"
 import { Component } from "react"
 import "./App.css"
 import Search from "./Search.js"
@@ -116,11 +117,10 @@ class App extends Component {
 
   fetchSearchTopStories = (searchTerm, page = 0) => {
     const { searchKey, results } = this.state
-    fetch(
+    axios(
       `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`
     )
-      .then((response) => response.json())
-      .then((result) => this.setSearchTopStories(result))
+      .then((result) => this.setSearchTopStories(result.data))
       .catch((error) => {
         debugger
         this.setState({ error })
