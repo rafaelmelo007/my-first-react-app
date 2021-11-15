@@ -3,7 +3,7 @@ import { Component } from "react"
 import "./index.css"
 import Search from "../Search"
 import Table from "../Table"
-import Button from "../Button"
+import { ButtonWithLoader } from "../Button"
 
 import {
   DEFAULT_QUERY,
@@ -26,6 +26,7 @@ class App extends Component {
       searchKey: "",
       searchTerm: DEFAULT_QUERY,
       error: null,
+      isLoading: false,
     }
   }
 
@@ -68,7 +69,7 @@ class App extends Component {
   }
 
   render() {
-    const { searchTerm, searchKey, results, error } = this.state
+    const { searchTerm, searchKey, results, error, isLoading } = this.state
 
     const page = (results && results[searchKey] && results[searchKey].page) || 0
 
@@ -94,15 +95,18 @@ class App extends Component {
           )}
         </div>
         <div className="interactions">
-          <Button
+          <ButtonWithLoader
+            isLoading={isLoading}
             onClick={() => this.fetchSearchTopStories(searchKey, page + 1)}
           >
-            More
-          </Button>
+            Load More
+          </ButtonWithLoader>
         </div>
       </div>
     )
   }
+
+  // # Helper methods #
 
   setSearchTopStories = (result) => {
     const { hits, page } = result
@@ -116,6 +120,7 @@ class App extends Component {
         ...results,
         [searchKey]: { hits: updatedHits, page },
       },
+      isLoading: false,
     })
   }
 
@@ -124,6 +129,7 @@ class App extends Component {
   }
 
   fetchSearchTopStories = (searchTerm, page = 0) => {
+    this.setState({ isLoading: true })
     axios(
       `${PATH_BASE}${PATH_SEARCH}?${PARAM_SEARCH}${searchTerm}&${PARAM_PAGE}${page}&${PARAM_HPP}${DEFAULT_HPP}`
     )

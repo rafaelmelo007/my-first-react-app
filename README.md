@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# Welcome to my first react project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created based on the proposal exercises available in the book **The Road to learn React\_ Your journey to master plain yet pragmatic React** by **Robin Wieruch**.
 
-## Available Scripts
+### Dependencies
 
-In the project directory, you can run:
+**axios** - package to execute REST commands.
 
-### `yarn start`
+```shell
+npm install axios
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+**react-test-renderer** - core package to build unit tests for react components.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```shell
+npm install --save-dev react-test-renderer
+```
 
-### `yarn test`
+**enzyme & enzyme-adapter-react-16** - packages to inspect react components being rendered.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```shell
+npm install --save-dev enzyme react-addons-test-utils enzyme-adapter-react-16
+```
 
-### `yarn build`
+**prop-types** - package to validate react component props and ensure their consistency (.i.e. valid data type, required field etc).
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```shell
+npm install prop-types
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+**@fortawesome/fontawesome-svg-core & @fortawesome/free-solid-svg-icons & @fortawesome/react-fontawesome** - package to display awesome icons among react components.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```shell
+yarn add @fortawesome/fontawesome-svg-core
+yarn add @fortawesome/free-solid-svg-icons
+yarn add @fortawesome/react-fontawesome
+```
 
-### `yarn eject`
+### Helpful commands
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. Build a react project from scratch
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```shell
+npm install -g create-react-app
+create-react-app <app-name>
+cd <app-name>
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+2. Run react application
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```shell
+npm start
+```
 
-## Learn More
+3. Run react tests
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```shell
+npm test
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Build production package
 
-### Code Splitting
+```shell
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Helpful links
 
-### Analyzing the Bundle Size
+**More about react unit tests** - https://testing-library.com/docs/react-testing-library/api/
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**More about fontawesome for react** - https://fontawesome.com/v5.15/how-to-use/on-the-web/using-with/react
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Jest plugin for Visual Code** -- https://marketplace.visualstudio.com/items?itemName=Orta.vscode-jest

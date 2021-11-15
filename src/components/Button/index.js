@@ -1,4 +1,5 @@
 import { Component } from "react"
+import Loader from "../Loader"
 
 class Button extends Component {
   render() {
@@ -12,8 +13,15 @@ class Button extends Component {
   }
 }
 
+const withLoader =
+  (Component) =>
+  ({ isLoading, ...rest }) =>
+    isLoading ? <Loader /> : <Component {...rest} />
+
 Button.defaultProps = {
   className: "",
 }
+
+export const ButtonWithLoader = withLoader(Button)
 
 export default Button
