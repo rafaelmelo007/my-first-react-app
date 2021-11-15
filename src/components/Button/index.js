@@ -12,4 +12,8 @@ class Button extends Component {
   }
 }
 
+Button.defaultProps = {
+  className: "",
+}
+
 export default Button
