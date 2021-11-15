@@ -1,6 +1,10 @@
 import { Component } from "react"
-import Button from "../Button"
+import Button, { SortButton } from "../Button"
 import PropTypes from "prop-types"
+
+import "./index.css"
+
+import { SORTS } from "../../constants"
 
 const largeColumn = {
   width: "40%",
@@ -14,10 +18,33 @@ const smallColumn = {
 
 class Table extends Component {
   render() {
-    const { list, onDismiss } = this.props
+    const { list, onDismiss, sortKey, onSort } = this.props
     return (
       <div className="table">
-        {list.map((item) => (
+        <div className="table-header">
+          <span style={largeColumn}>
+            <SortButton sortKey={"TITLE"} onSort={onSort}>
+              Title
+            </SortButton>
+          </span>
+          <span style={midColumn}>
+            <SortButton sortKey={"AUTHOR"} onSort={onSort}>
+              Author
+            </SortButton>
+          </span>
+          <span style={smallColumn}>
+            <SortButton sortKey={"COMMENTS"} onSort={onSort}>
+              Comments
+            </SortButton>
+          </span>
+          <span style={smallColumn}>
+            <SortButton sortKey={"POINTS"} onSort={onSort}>
+              Points
+            </SortButton>
+          </span>
+          <span style={smallColumn}>Archive</span>
+        </div>
+        {SORTS[sortKey](list).map((item) => (
           <div key={item.objectID} className="table-row">
             <span style={largeColumn}>
               <a href={item.url}>{item.title}</a>
@@ -46,6 +73,8 @@ Table.propTypes = {
     })
   ).isRequired,
   onDismiss: PropTypes.func.isRequired,
+  sortKey: PropTypes.string.isRequired,
+  onSort: PropTypes.func.isRequired,
 }
 
 export default Table

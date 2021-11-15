@@ -1,4 +1,5 @@
 import { Component } from "react"
+import { PropTypes } from "prop-types"
 import Loader from "../Loader"
 
 class Button extends Component {
@@ -13,15 +14,34 @@ class Button extends Component {
   }
 }
 
+Button.defaultProps = {
+  className: "",
+}
+
+export default Button
+
+// --------------------------------------- //
+
 const withLoader =
   (Component) =>
   ({ isLoading, ...rest }) =>
     isLoading ? <Loader /> : <Component {...rest} />
 
-Button.defaultProps = {
-  className: "",
+withLoader.propTypes = {
+  isLoading: PropTypes.bool.isRequired
 }
 
 export const ButtonWithLoader = withLoader(Button)
 
-export default Button
+// --------------------------------------- //
+
+export const SortButton = ({ sortKey, onSort, children }) =>
+    <Button onClick={() => onSort(sortKey)}>
+    {children}
+    </Button>
+
+SortButton.propTypes = {
+  sortKey: PropTypes.string.isRequired,
+  onSort: PropTypes.bool.isRequired,
+  children: PropTypes.node.isRequired
+}

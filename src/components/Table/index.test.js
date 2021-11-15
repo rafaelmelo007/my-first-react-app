@@ -29,20 +29,20 @@ describe("Table", () => {
   const onDismiss = (objectID) => {}
 
   it("renders without crashing", () => {
-    const { queryByText } = render(<Table onDismiss={onDismiss} {...props} />)
+    const { queryByText } = render(<Table onDismiss={onDismiss} sortKey={'NONE'} {...props} />)
 
     const div = queryByText("title_abc")
     expect(div.textContent).toEqual("title_abc")
   })
 
   test("has a valid snapshot", () => {
-    const component = renderer.create(<Table onDismiss={onDismiss} {...props} />)
+    const component = renderer.create(<Table onDismiss={onDismiss} sortKey={'NONE'} {...props} />)
     let tree = component.toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   test("shows two items in list", () => {
-    const element = shallow(<Table onDismiss={onDismiss} {...props} />)
+    const element = shallow(<Table onDismiss={onDismiss} sortKey={'NONE'} {...props} />)
     expect(element.find(".table-row").length).toBe(2)
   })
 })

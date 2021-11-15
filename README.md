@@ -36,6 +36,11 @@ yarn add @fortawesome/free-solid-svg-icons
 yarn add @fortawesome/react-fontawesome
 ```
 
+**lodash** - package to sort tables based on one specific column.
+```shell
+npm install lodash
+```
+
 ### Helpful commands
 
 1. Build a react project from scratch

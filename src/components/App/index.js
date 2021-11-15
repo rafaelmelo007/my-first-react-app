@@ -24,6 +24,7 @@ class App extends Component {
     this.state = {
       results: null,
       searchKey: "",
+      sortKey: "NONE",
       searchTerm: DEFAULT_QUERY,
       error: null,
       isLoading: false,
@@ -68,8 +69,13 @@ class App extends Component {
     })
   }
 
+  onSort = (sortKey) => {
+    this.setState({ sortKey })
+  }
+
   render() {
-    const { searchTerm, searchKey, results, error, isLoading } = this.state
+    const { searchTerm, searchKey, results, error, isLoading, sortKey } =
+      this.state
 
     const page = (results && results[searchKey] && results[searchKey].page) || 0
 
@@ -91,7 +97,12 @@ class App extends Component {
               {error.message}
             </div>
           ) : (
-            <Table list={list} onDismiss={this.onDismiss} />
+            <Table
+              list={list}
+              onDismiss={this.onDismiss}
+              sortKey={sortKey}
+              onSort={this.onSort}
+            />
           )}
         </div>
         <div className="interactions">
