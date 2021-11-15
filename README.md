@@ -37,8 +37,15 @@ yarn add @fortawesome/react-fontawesome
 ```
 
 **lodash** - package to sort tables based on one specific column.
+
 ```shell
 npm install lodash
+```
+
+**classnames** - package to better manipulate html class names.
+
+```shell
+npm install classnames
 ```
 
 ### Helpful commands

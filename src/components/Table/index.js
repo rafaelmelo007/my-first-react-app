@@ -18,33 +18,53 @@ const smallColumn = {
 
 class Table extends Component {
   render() {
-    const { list, onDismiss, sortKey, onSort } = this.props
+    const { list, onDismiss, sortKey, onSort, isSortReverse } = this.props
+    let sortedList = !isSortReverse
+      ? SORTS[sortKey](list)
+      : SORTS[sortKey](list).reverse()
+
     return (
       <div className="table">
         <div className="table-header">
           <span style={largeColumn}>
-            <SortButton sortKey={"TITLE"} onSort={onSort}>
+            <SortButton
+              sortKey={"TITLE"}
+              onSort={onSort}
+              activeSortKey={sortKey}
+            >
               Title
             </SortButton>
           </span>
           <span style={midColumn}>
-            <SortButton sortKey={"AUTHOR"} onSort={onSort}>
+            <SortButton
+              sortKey={"AUTHOR"}
+              onSort={onSort}
+              activeSortKey={sortKey}
+            >
               Author
             </SortButton>
           </span>
           <span style={smallColumn}>
-            <SortButton sortKey={"COMMENTS"} onSort={onSort}>
+            <SortButton
+              sortKey={"COMMENTS"}
+              onSort={onSort}
+              activeSortKey={sortKey}
+            >
               Comments
             </SortButton>
           </span>
           <span style={smallColumn}>
-            <SortButton sortKey={"POINTS"} onSort={onSort}>
+            <SortButton
+              sortKey={"POINTS"}
+              onSort={onSort}
+              activeSortKey={sortKey}
+            >
               Points
             </SortButton>
           </span>
           <span style={smallColumn}>Archive</span>
         </div>
-        {SORTS[sortKey](list).map((item) => (
+        {sortedList.map((item) => (
           <div key={item.objectID} className="table-row">
             <span style={largeColumn}>
               <a href={item.url}>{item.title}</a>
