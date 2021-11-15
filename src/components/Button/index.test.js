@@ -1,10 +1,17 @@
 import { render } from "@testing-library/react"
 import renderer from "react-test-renderer"
-import Button from "."
+import Button, { SortButton } from "."
 
 describe("Button", () => {
   it("renders without crashing", () => {
     const { queryByText } = render(<Button>OK!</Button>)
+
+    const button = queryByText("OK!")
+    expect(button.textContent).toEqual("OK!")
+  })
+
+  it("renders sort without crashing", () => {
+    const { queryByText } = render(<SortButton>OK!</SortButton>)
 
     const button = queryByText("OK!")
     expect(button.textContent).toEqual("OK!")

@@ -33,11 +33,13 @@ withLoader.propTypes = {
   isLoading: PropTypes.bool.isRequired,
 }
 
-export const ButtonWithLoader = withLoader(Button)
+const ButtonWithLoader = withLoader(Button)
+
+export { ButtonWithLoader }
 
 // --------------------------------------- //
 
-export class SortButton extends Component {
+class SortButton extends Component {
   render() {
     const { sortKey, onSort, className, children, activeSortKey } = this.props
     const sortClass = classNames(className, {
@@ -62,3 +64,5 @@ SortButton.propTypes = {
 SortButton.defaultProps = {
   className: "button-inline",
 }
+
+export { SortButton }
